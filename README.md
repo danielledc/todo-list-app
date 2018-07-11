@@ -1,27 +1,38 @@
 # TodoListApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+This is a single page to do list application, using the MEAN stack of technologies: MongoDB, Express.js, Angular 6, and Node. This application uses the technologies as follows:
 
-## Development server
+MongoDB
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The database of tasks is stored in a MongoDB database collection called tasks.
 
-## Code scaffolding
+Express.js
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Express is used for creating the APIs used for retrieving, saving, updating and deleting tasks, from the database
 
-## Build
+Angular
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Angular is used to handle the dynamic front end and update the view, including a form to add a new task, displaying and filtering the to do list, and
+making http requests to the APIs created using Express
 
-## Running unit tests
+Node.js
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Node handles the server side programming and provides code management, through the Node Package Manager, of Node and third party programs, such as Angular.
 
-## Running end-to-end tests
+RUN THE APPLICATION
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Using Docker
 
-## Further help
+In the todo-list-app directory run
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+docker run -p 4200:4200 todo-list-app:dev
+
+Using NPM
+
+npm start
+
+TESTING
+
+Unit and functional tests have been created using Mocha and Chai. To run the tests, in the todo-list-app directory run
+
+npm test

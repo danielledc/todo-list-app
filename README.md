@@ -25,7 +25,7 @@ Using Docker
 
 In the todo-list-app directory run
 
-docker run -p 4200:4200 todo-list-app:dev
+docker run -p 4200:4200 todo-list-app
 
 TESTING
 

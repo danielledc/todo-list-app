@@ -36,9 +36,13 @@ npm test
 DIRECTORY STRUCTURE AND RELEVANT FILES
 
 todo-list-app/
+
 app.js -  creates an Express app, sets up the app with various settings, and then exports the app from the module
+
 bin/
+
 www - the app entry point
+
 Dockerfile - text document containing all  commands to assemble a Docker image.
 package.json - packages that the app project depends on
 README.md
@@ -49,15 +53,26 @@ app.component.html  - the application shell component HTML template.
 app.component.css   - the application shell component's CSS styles.
 task.service.ts  -    Task service
 task.ts
+
 tasks/
+
 tasks.component.html - task component class code, written in TypeScript
+
 tasks.component.ts   - task component HTML template
+
 tasks.component.css  - task component CSS styles
+
 routes/
+
 task.js - defines Express routes
+
 models/
+
 Task.js - defines mongoose schema definition
-		styles.css - global stylesheet
-	test/
-		task.js - unit test file
+
+styles.css - global stylesheet
+
+test/
+
+task.js - unit test file
 

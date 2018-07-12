@@ -44,14 +44,21 @@ bin/
 www - the app entry point
 
 Dockerfile - text document containing all  commands to assemble a Docker image.
+
 package.json - packages that the app project depends on
+
 README.md
-src/
-app/
+
+src/app/
+
 app.component.ts    - application shell component class code, written in TypeScript.
+
 app.component.html  - the application shell component HTML template.
+
 app.component.css   - the application shell component's CSS styles.
+
 task.service.ts  -    Task service
+
 task.ts
 
 tasks/

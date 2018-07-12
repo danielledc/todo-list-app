@@ -36,8 +36,10 @@ export class TasksComponent implements OnInit {
  }
  
  //call saveTask function on submit of form
-  onSubmit(){
+  onSubmit(f){
+	
 	 this.saveTask();
+	 f.resetForm();
   }
   
   //on init, call getToDoList function to display all current tasks

@@ -1,7 +1,7 @@
 
 
   <div class="formTable" [hidden]="submitted">
- <form #todoListForm="ngForm" (ngSubmit)="onSubmit()">
+ <form #todoListForm="ngForm" (ngSubmit)="onSubmit(todoListForm)">
  
      <p>*Required field</p><br/>
 	 <div class="addTodo">

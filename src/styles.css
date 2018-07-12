@@ -13,4 +13,9 @@ p{
 .addTodo, .error{
 	margin-bottom:10px;
 	display:table-row;
+	font-weight:bold;
+}
+
+.error{
+	color:#ff0000;
 }

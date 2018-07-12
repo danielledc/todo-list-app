@@ -1,12 +1,13 @@
 //During the test the env variable is set to test
-process.env.NODE_ENV = 'test';
+process.env.NODE_ENV="test";
+console.log(process.env.NODE_ENV);
+let mongoose = require("mongoose");
 
-var mongoose = require("mongoose");
-var Task = require('../src/models/Task');
-var chai = require('chai');
-var chaiHttp = require('chai-http');
-var app = require('../app');
-var should = chai.should();
+let chai = require('chai');
+let chaiHttp = require('chai-http');
+let app = require('../app');
+let should = chai.should();
+let Task = require('../src/models/Task.js');
 
 
 chai.use(chaiHttp);
@@ -26,7 +27,7 @@ describe('to do list app', function() {
 
 });
 
-describe('/GET todolist', () => {
+describe('/GET to do list', () => {
       it('it should get all the tasks in the to do list', (done) => {
         chai.request(app)
             .get('/api/task')
@@ -69,7 +70,7 @@ describe('/POST task', () => {
   
 describe('/PUT/:id task', () => {
       it('it should update a task given the id', (done) => {
-        let task = new Task({name: "Project", description: "Web App Project", dueDate: "07/20/2018", taskColor: "#fff", completed:false})
+        let task =new Task({name: "Project", description: "Web App Project", dueDate: "07/20/2018", taskColor: "#fff", completed:false});
         task.save((err, task) => {
                 chai.request(app)
 				.put('/api/task/' +task.id)
@@ -87,7 +88,7 @@ describe('/PUT/:id task', () => {
 
  describe('/DELETE/:id task', () => {
       it('it should delete a task from the to do list given the id', (done) => {
-        let task = new Task({name: "Project", description: "Web App Project", dueDate: "07/20/2018", taskColor: "#fff", completed:false})
+        let task = new Task({name: "Project", description: "Web App Project", dueDate: "07/20/2018", taskColor: "#fff", completed:false});
         task.save((err, task) => {
                 chai.request(app)
                 .delete('/api/task/' + task.id)

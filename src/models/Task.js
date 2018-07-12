@@ -1,15 +1,21 @@
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
+let coll;
 //task schema definition
-var TaskSchema = new mongoose.Schema({
+
+if(process.env.NODE_ENV!="test"){
+	coll={collection: 'todos'}
+}
+else  coll={collection:'todos-test'};
+let TaskSchema = new mongoose.Schema({
   name: String,
   description: String,
   dueDate: String,  
   taskColor:String,
   completed: Boolean
-}, {collection: 'todos'});
+},coll);
 
-var Task = mongoose.model('Task', TaskSchema);
+let Task= mongoose.model('Task', TaskSchema)
 
 //export TaskSchema
 module.exports=Task;

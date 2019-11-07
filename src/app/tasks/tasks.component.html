@@ -1,76 +1,160 @@
-
-
-  <div class="formTable" [hidden]="submitted">
- <form #todoListForm="ngForm" (ngSubmit)="onSubmit(todoListForm)">
- 
-     <p>*Required field</p><br/>
-	 <div class="addTodo">
-	 <div class="formTableCell"><label>Task Name*:</label></div>
-	  <div class="formTableCell"><input type="text" [(ngModel)]="tasks.name" class="form-control" #name="ngModel" placeholder="name" name="name"  class="form-control" required></div>
-	  
-	  </div>
-	  <div  *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
-		<div class="formTableCell"></div> <div class="formTableCell" *ngIf="name.errors.required">
-		Name is required.
-		</div>
-      </div> 
-	  <div class="addTodo">
-		   <div class="formTableCell"><label>Task Description*:</label></div>
-			<div class="formTableCell"><input type="text" [(ngModel)]="tasks.description" name="description" placeholder="description" #description="ngModel" class="form-control" required></div>
-	  </div>
-	  <div  *ngIf="description.invalid && (description.dirty || description.touched)" class="error">
-		<div class="formTableCell"></div> <div class="formTableCell" *ngIf="description.errors.required">
-			Description is required.
-		</div>
+<div class="formTable" [hidden]="submitted">
+  <form #todoListForm="ngForm" (ngSubmit)="onSubmit(todoListForm)">
+    <p>*Required field</p>
+    <br />
+    <div class="addTodo">
+      <div class="formTableCell"><label>Task Name*:</label></div>
+      <div class="formTableCell">
+        <input
+          type="text"
+          [(ngModel)]="tasks.name"
+          class="form-control"
+          #name="ngModel"
+          placeholder="name"
+          name="name"
+          class="form-control"
+          required
+        />
       </div>
-	  <div class="addTodo">
-	  <div class="formTableCell"><label>Task Due Date*:</label></div>
-		<div class="formTableCell"><my-date-picker name="dueDate" #mydp="mydatepicker" [options]="myDatePickerOptions" [selector]="selector"
-                    [(ngModel)]="tasks.dueDate" required></my-date-picker></div>
-	  </div>
-	  <div  *ngIf="mydp.invalid && (mydp.dirty || mydp.touched)" class="error">
-		<div class="formTableCell"></div> <div class="formTableCell" *ngIf="mydp.errors.required">
-		Date is required.
-		</div>
+    </div>
+    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
+      <div class="formTableCell"></div>
+      <div class="formTableCell" *ngIf="name.errors.required">
+        Name is required.
       </div>
-	  <div>
-               <button type="submit" class="btn btn-success" [disabled]="!todoListForm.form.valid">Add Task</button>
-                       
-	  </div>
+    </div>
+    <div class="addTodo">
+      <div class="formTableCell"><label>Task Description*:</label></div>
+      <div class="formTableCell">
+        <input
+          type="text"
+          [(ngModel)]="tasks.description"
+          name="description"
+          placeholder="description"
+          #description="ngModel"
+          class="form-control"
+          required
+        />
+      </div>
+    </div>
+    <div
+      *ngIf="description.invalid && (description.dirty || description.touched)"
+      class="error"
+    >
+      <div class="formTableCell"></div>
+      <div class="formTableCell" *ngIf="description.errors.required">
+        Description is required.
+      </div>
+    </div>
+    <div class="addTodo">
+      <div class="formTableCell"><label>Task Due Date*:</label></div>
+      <div class="formTableCell">
+        <my-date-picker
+          name="dueDate"
+          #mydp="mydatepicker"
+          [options]="myDatePickerOptions"
+          [selector]="selector"
+          [(ngModel)]="tasks.dueDate"
+          required
+        ></my-date-picker>
+      </div>
+    </div>
+    <div *ngIf="mydp.invalid && (mydp.dirty || mydp.touched)" class="error">
+      <div class="formTableCell"></div>
+      <div class="formTableCell" *ngIf="mydp.errors.required">
+        Date is required.
+      </div>
+    </div>
+    <div>
+      <button
+        type="submit"
+        class="btn btn-success"
+        [disabled]="!todoListForm.form.valid"
+      >
+        Add Task
+      </button>
+    </div>
   </form>
-  
-  </div>
-  <hr/>
-  <div> <h1>To Do List</h1></div>
-  <a href="#" (click)="resetFilter()">Reset Filter</a>
-  <label class="form-radio-label">
-  <br/>
-  <input #tasksDueSoon type="radio" name="radiogroup" (click)="filterList('duesoon')">View Tasks Due Today And Tomorrow:<br/>
-  </label>
-  <label class="form-radio-label">
-     &nbsp;&nbsp;&nbsp; <input type="radio" name="radiogroup2" (change)="filterList('duetomorrow')"  [disabled]="!tasksDueSoon.checked"> <span class="disabledRadio" [ngStyle]="{'color': radioColor}">Tomorrow ONLY</span>
-   </label>
-  <label class="form-radio-label">
-      <input type="radio" name="radiogroup2"  (change)="filterList('duetoday')" [disabled]="!tasksDueSoon.checked" > <span class="disabledRadio" [ngStyle]="{'color': radioColor}">Today ONLY</span>
-    </label><br/>
-	 <label class="form-radio-label">
-	<input type="radio" name="radiogroup"  (click)="filterList('overdue')"> View Overdue Tasks
-  
-   </label><br/>
-	<label class="form-radio-label">
-      <input type="radio" name="radiogroup" (click)="filterList('completed')" > View Completed Tasks
-    </label>
-	
-  <div style="display:table; border:1px solid #000;margin-top:20px">
-	<div style="display:table-row" class="listHeaders" >
-	
-     <div class="tableCell" >Completed</div><div class="tableCell">Task Name </div><div class="tableCell"> Task Description </div><div class="tableCell"> Task Due Date </div><div class="tableCell">Edit Task	   </div>
-	</div>
-	<div [hidden]="toDoList" style="padding-left:10px;">No Tasks</div>
-     
-	<div style="display:table-row" *ngFor="let key of keysArray | orderBy: order">
-	 <div class="tableCell" ><input type="checkbox" [(ngModel)]="currentTasks[key].completed" (change)="updateTaskStatus(currentTasks[key]._id,currentTasks[key].completed)" /></div><div class="tableCell">{{ currentTasks[key].name }} </div><div class="tableCell"> {{currentTasks[key].description}} </div><div class="tableCell" [ngStyle]="{'background': currentTasks[key].taskColor}"> {{currentTasks[key].dueDate}} </div><div class="tableCell"><button type="submit" name="{{currentTasks[key]._id}}" (click)=" deleteTask(currentTasks[key]._id)">Delete Task</button>
-	   </div>
-	</div>
 </div>
+<hr />
+<div><h1>To Do List</h1></div>
+<a href="#" (click)="resetFilter()">Reset Filter</a>
+<label class="form-radio-label">
+  <br />
+  <input
+    #tasksDueSoon
+    type="radio"
+    name="radiogroup"
+    (click)="filterList('duesoon')"
+  />View Tasks Due Today And Tomorrow:<br />
+</label>
+<label class="form-radio-label">
+  &nbsp;&nbsp;&nbsp;
+  <input
+    type="radio"
+    name="radiogroup2"
+    (change)="filterList('duetomorrow')"
+    [disabled]="!tasksDueSoon.checked"
+  />
+  <span class="disabledRadio" [ngStyle]="{ color: radioColor }"
+    >Tomorrow ONLY</span
+  >
+</label>
+<label class="form-radio-label">
+  <input
+    type="radio"
+    name="radiogroup2"
+    (change)="filterList('duetoday')"
+    [disabled]="!tasksDueSoon.checked"
+  />
+	<span class="disabledRadio" [ngStyle]="{ color: radioColor }">Today ONLY</span> 
+</label>
+<br />
+<label class="form-radio-label">
+	<input type="radio" name="radiogroup" (click)="filterList('overdue')" /> 
+	View Overdue Tasks
+</label>
+<br />
+<label class="form-radio-label">
+  <input type="radio" name="radiogroup" (click)="filterList('completed')" />
+  View Completed Tasks
+</label>
+<div style="display:table; border:1px solid #000;margin-top:20px">
+  <div style="display:table-row" class="listHeaders">
+    <div class="tableCell">Completed</div>
+    <div class="tableCell">Task Name</div>
+    <div class="tableCell">Task Description</div>
+    <div class="tableCell">Task Due Date</div>
+    <div class="tableCell">Edit Task</div>
+  </div>
+  <div [hidden]="toDoList" style="padding-left:10px;">No Tasks</div>
 
+  <div style="display:table-row" *ngFor="let key of keysArray | orderBy: order">
+    <div class="tableCell">
+      <input
+        type="checkbox"
+        [(ngModel)]="currentTasks[key].completed"
+        (change)="
+          updateTaskStatus(currentTasks[key]._id, currentTasks[key].completed)
+        "
+      />
+    </div>
+    <div class="tableCell">{{ currentTasks[key].name }}</div>
+    <div class="tableCell">{{ currentTasks[key].description }}</div>
+    <div
+      class="tableCell"
+      [ngStyle]="{ background: currentTasks[key].taskColor }"
+    >
+      {{ currentTasks[key].dueDate }}
+    </div>
+    <div class="tableCell">
+      <button
+        type="submit"
+        name="{{ currentTasks[key]._id }}"
+        (click)="deleteTask(currentTasks[key]._id)"
+      >
+        Delete Task
+      </button>
+    </div>
+  </div>
+</div>

@@ -30,7 +30,7 @@
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "mocha": "^5.2.0",
-    "mongodb": "^3.1.1",
+    "mongodb": "^3.1.13",
     "mongoose": "^5.2.1",
     "morgan": "^1.9.0",
     "mydatepicker": "^2.6.3",
